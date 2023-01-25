@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('Confifrm Connection') {
+        stage('Confirm Connection') {
             steps {
                 echo 'Connection Confirmed'
             }
