@@ -82,3 +82,43 @@ resource "aws_instance" "BackendInstance" {
     Name = "backend-instance"
   }
 }
+
+# Create an internet gateway for the VPC
+resource "aws_internet_gateway" "InternetGateway" {
+  vpc_id = aws_vpc.MainVPC.id
+
+  tags = {
+    Name = "internet-gateway"
+  }
+}
+
+# Create a route table for the internet gateway
+resource "aws_route_table" "RouteTable" {
+  vpc_id = aws_vpc.RouteTable.id
+
+  route {
+    cidr_block = "0.0.0.0/0" 
+    gateway_id = aws_internet_gateway.InternetGateway.id
+  }
+
+  route {
+    ipv6_cidr_block = "::/0" 
+    gateway_id = aws_internet_gateway.InternetGateway.id
+  }
+
+  tags = {
+    Name = "route-table"
+  }
+}
+
+# Associate the route table with subnet A
+resource "aws_route_table_association" "A" {
+  subnet_id      = aws_subnet.SubnetA.id
+  route_table_id = aws_route_table.RouteTable.id
+}
+
+# Associate the route table with subnet B
+resource "aws_route_table_association" "B" {
+  subnet_id      = aws_subnet.SubnetB.id
+  route_table_id = aws_route_table.RouteTable.id
+}
