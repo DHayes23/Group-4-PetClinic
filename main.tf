@@ -26,6 +26,7 @@ resource "aws_subnet" "SubnetA" {
 resource "aws_network_interface" "SubnetAInterface" {
   subnet_id   = aws_subnet.SubnetA.id
   # private_ips = ["172.16.10.100"]
+  security_groups= [var.security_group]
 
   tags = {
     Name = "subnet-a-interface"
