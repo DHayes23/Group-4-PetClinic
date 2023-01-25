@@ -94,7 +94,7 @@ resource "aws_internet_gateway" "InternetGateway" {
 
 # Create a route table for the internet gateway
 resource "aws_route_table" "RouteTable" {
-  vpc_id = aws_vpc.RouteTable.id
+  vpc_id = aws_vpc.MainVPC.id
 
   route {
     cidr_block = "0.0.0.0/0" 
