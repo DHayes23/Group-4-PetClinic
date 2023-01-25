@@ -62,8 +62,8 @@ resource "aws_instance" "FrontendInstance" {
   ami           = var.ami_id
   key_name = var.key_name
   instance_type = var.instance_type
-  security_groups= [var.security_group]
   subnet_id     = aws_subnet.SubnetA.id
+  vpc_security_group_ids = [aws_security_group.petclinic_security_group.id]
 }
 
 # Create Backend EC2 instance
@@ -71,6 +71,6 @@ resource "aws_instance" "BackendInstance" {
   ami           = var.ami_id
   key_name = var.key_name
   instance_type = var.instance_type
-  security_groups= [var.security_group]
   subnet_id     = aws_subnet.SubnetA.id
+  vpc_security_group_ids = [aws_security_group.petclinic_security_group.id]
 }
