@@ -5,8 +5,8 @@
   - name: updating packages
     command: sudo apt-get update -y
 
-- name: Update all packages  
-  hosts: backend
+- name: install docker  
+  hosts: all
   become: true
   tasks:
   - name: updating packages
