@@ -64,6 +64,10 @@ resource "aws_instance" "FrontendInstance" {
   instance_type = var.instance_type
   subnet_id     = aws_subnet.SubnetA.id
   vpc_security_group_ids = [aws_security_group.petclinic_security_group.id]
+
+  tags = {
+    Name = "frontend-instance"
+  }
 }
 
 # Create Backend EC2 instance
@@ -73,4 +77,8 @@ resource "aws_instance" "BackendInstance" {
   instance_type = var.instance_type
   subnet_id     = aws_subnet.SubnetA.id
   vpc_security_group_ids = [aws_security_group.petclinic_security_group.id]
+
+  tags = {
+    Name = "backend-instance"
+  }
 }
