@@ -1,5 +1,5 @@
 - name: Update all packages  
-  hosts: 172.31.33.153
+  hosts: all
   become: true
   tasks:
     - name: updating packages
