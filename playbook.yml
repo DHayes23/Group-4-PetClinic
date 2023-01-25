@@ -7,8 +7,8 @@
 
   # install docker 
     - name: Install docker
-    become: true
-    shell: curl https://get.docker.com | sh
+      become: true
+      shell: curl https://get.docker.com | sh
 
 # - name : Pull Docker image backend
 #   hosts: backend
