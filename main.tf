@@ -64,7 +64,7 @@ resource "aws_instance" "FrontendInstance" {
   ami           = var.ami_id
   key_name = var.key_name
   instance_type = var.instance_type
-  security_groups= [var.security_group]
+  security_groups= aws_security_group.petclinic_security_group.id
   subnet_id     = aws_subnet.SubnetA.id
 }
 
@@ -73,6 +73,6 @@ resource "aws_instance" "BackendInstance" {
   ami           = var.ami_id
   key_name = var.key_name
   instance_type = var.instance_type
-  security_groups= [var.security_group]
+  security_groups= aws_security_group.petclinic_security_group.id
   subnet_id     = aws_subnet.SubnetA.id
 }
