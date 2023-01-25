@@ -7,6 +7,7 @@ provider "aws" {
 resource "aws_security_group" "petclinic_security_group" {
   name        = var.security_group
   description = "Main security group"
+  vpc_id      = aws_vpc.MainVPC.id
 
   ingress {
     from_port   = 8080
