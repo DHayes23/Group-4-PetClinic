@@ -3,6 +3,15 @@ provider "aws" {
   shared_credentials_file = "~/.aws/credentials"
 }
 
+# Create a VPC to contain the other resources.
+resource "aws_vpc" "MainVPC" {
+  cidr_block = "10.0.0.0/16"
+
+  tags = {
+    Name = "main-vpc"
+  }
+}
+
 #Create security group with firewall rules
 resource "aws_security_group" "petclinic_security_group" {
   description = "Main security group"
@@ -24,14 +33,6 @@ resource "aws_security_group" "petclinic_security_group" {
 
 }
 
-# Create a VPC to contain the other resources.
-resource "aws_vpc" "MainVPC" {
-  cidr_block = "10.0.0.0/16"
-
-  tags = {
-    Name = "main-vpc"
-  }
-}
 
 # Create the first subnet within the VPC.
 resource "aws_subnet" "SubnetA" {
