@@ -6,7 +6,7 @@ provider "aws" {
 #Create security group with firewall rules
 resource "aws_security_group" "petclinic_security_group" {
   name        = var.security_group
-  description = "security group for Ec2 instance"
+  description = "Main security group"
 
   ingress {
     from_port   = 8080
@@ -64,7 +64,7 @@ resource "aws_instance" "FrontendInstance" {
   ami           = var.ami_id
   key_name = var.key_name
   instance_type = var.instance_type
-  security_groups= aws_security_group.petclinic_security_group.id
+  security_groups= [var.security_group]
   subnet_id     = aws_subnet.SubnetA.id
 }
 
@@ -73,6 +73,6 @@ resource "aws_instance" "BackendInstance" {
   ami           = var.ami_id
   key_name = var.key_name
   instance_type = var.instance_type
-  security_groups= aws_security_group.petclinic_security_group.id
+  security_groups= [var.security_group]
   subnet_id     = aws_subnet.SubnetA.id
 }
