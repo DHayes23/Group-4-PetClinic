@@ -6,9 +6,9 @@
       command: sudo apt-get update -y
 
   # install docker 
-    - name: Install docker
-      become: true
-      shell: curl https://get.docker.com | sh
+    # - name: Install docker
+    #   become: true
+    #   shell: curl https://get.docker.com | sh
 
 # - name : Pull Docker image backend
 #   hosts: backend
