@@ -32,11 +32,6 @@ resource "aws_vpc" "MainVPC" {
   cidr_block = "10.0.0.0/16"
   security_groups= [var.security_group]
 
-  depends_on = [
-    aws_security_group.petclinic_security_group
-  ]
-  
-
   tags = {
     Name = "main-vpc"
   }
@@ -53,16 +48,6 @@ resource "aws_subnet" "SubnetA" {
   }
 }
 
-resource "aws_network_interface" "SubnetAInterface" {
-  subnet_id   = aws_subnet.SubnetA.id
-  # private_ips = ["172.16.10.100"]
-
-
-  tags = {
-    Name = "subnet-a-interface"
-  }
-}
-
 # Create the second subnet within the VPC.
 resource "aws_subnet" "SubnetB" {
   vpc_id                  = aws_vpc.MainVPC.id
@@ -75,25 +60,20 @@ resource "aws_subnet" "SubnetB" {
 }
 
 
-# Create AWS ec2 instance
+# Create FrontEnd EC2 instance
 resource "aws_instance" "FrontendInstance" {
   ami           = var.ami_id
   key_name = var.key_name
   instance_type = var.instance_type
+  security_groups= [var.security_group]
 
-  network_interface {
-    network_interface_id = aws_network_interface.SubnetAInterface.id
-    device_index         = 0
-  }
 }
-# Create AWS ec2 instance
+
+# Create Backend EC2 instance
 resource "aws_instance" "BackendInstance" {
   ami           = var.ami_id
   key_name = var.key_name
   instance_type = var.instance_type
+  security_groups= [var.security_group]
 
-  network_interface {
-    network_interface_id = aws_network_interface.SubnetAInterface.id
-    device_index         = 1
-  }
 }
