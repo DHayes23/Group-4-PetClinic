@@ -1,1 +1,1 @@
-# Group-4-PetClinic
+# QATeam4-Petclinic
