@@ -5,7 +5,6 @@ provider "aws" {
 
 #Create security group with firewall rules
 resource "aws_security_group" "petclinic_security_group" {
-  name        = var.security_group
   description = "Main security group"
   vpc_id      = aws_vpc.MainVPC.id
 
@@ -23,9 +22,6 @@ resource "aws_security_group" "petclinic_security_group" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags= {
-    Name = var.security_group
-  }
 }
 
 # Create a VPC to contain the other resources.
