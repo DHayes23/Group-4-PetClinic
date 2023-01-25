@@ -65,7 +65,7 @@ resource "aws_instance" "FrontendInstance" {
   key_name = var.key_name
   instance_type = var.instance_type
   security_groups= [var.security_group]
-
+  subnet_id     = aws_subnet.SubnetA.id
 }
 
 # Create Backend EC2 instance
@@ -74,5 +74,5 @@ resource "aws_instance" "BackendInstance" {
   key_name = var.key_name
   instance_type = var.instance_type
   security_groups= [var.security_group]
-
+  subnet_id     = aws_subnet.SubnetA.id
 }
