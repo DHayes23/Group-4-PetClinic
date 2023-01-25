@@ -32,9 +32,6 @@ resource "aws_instance" "FrontendInstance" {
   key_name = var.key_name
   instance_type = var.instance_type
   security_groups= [var.security_group]
-  tags= {
-    Name = var.tag_name
-  }
 }
 # Create AWS ec2 instance
 resource "aws_instance" "BackendInstance" {
@@ -42,7 +39,4 @@ resource "aws_instance" "BackendInstance" {
   key_name = var.key_name
   instance_type = var.instance_type
   security_groups= [var.security_group]
-  tags= {
-    Name = var.tag_name
-  }
 }

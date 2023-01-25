@@ -18,11 +18,6 @@ variable "security_group" {
   default     = "petclinic_security_group"
 }
 
-variable "tag_name" {
-  description = "Tag Name of for Ec2 instance"
-  default     = "my-ec2-instance"
-}
-
 variable "ami_id" {
   description = "AMI for Ubuntu Ec2 instance 22.04"
   default     = "ami-0333305f9719618c7"
