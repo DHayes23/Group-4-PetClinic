@@ -1,5 +1,46 @@
 provider "aws" {
   region = var.aws_region
+  shared_credentials_file = "~/.aws/credentials"
+}
+
+# Create a VPC to contain the other resources.
+resource "aws_vpc" "MainVPC" {
+  cidr_block = "10.0.0.0/16"
+
+  tags = {
+    Name = "main-vpc"
+  }
+}
+
+# Create the first subnet within the VPC.
+resource "aws_subnet" "SubnetA" {
+  vpc_id                  = aws_vpc.MainVPC.id
+  cidr_block              = "10.0.1.0/24"
+  availability_zone       = "eu-west-1a"
+
+  tags = {
+    Name = "subnet-a"
+  }
+}
+
+resource "aws_network_interface" "SubnetAInterface" {
+  subnet_id   = aws_subnet.my_subnet.id
+  private_ips = ["172.16.10.100"]
+
+  tags = {
+    Name = "subnet-a-interface"
+  }
+}
+
+# Create the second subnet within the VPC.
+resource "aws_subnet" "SubnetB" {
+  vpc_id                  = aws_vpc.MainVPC.id
+  cidr_block              = "10.0.1.0/24"
+  availability_zone       = "eu-west-1b"
+
+  tags = {
+    Name = "subnet-b"
+  }
 }
 
 #Create security group with firewall rules
@@ -32,6 +73,11 @@ resource "aws_instance" "FrontendInstance" {
   key_name = var.key_name
   instance_type = var.instance_type
   security_groups= [var.security_group]
+
+  network_interface {
+    network_interface_id = aws_network_interface.SubnetAInterface.id
+    device_index         = 0
+  }
 }
 # Create AWS ec2 instance
 resource "aws_instance" "BackendInstance" {
@@ -39,4 +85,9 @@ resource "aws_instance" "BackendInstance" {
   key_name = var.key_name
   instance_type = var.instance_type
   security_groups= [var.security_group]
+
+  network_interface {
+    network_interface_id = aws_network_interface.SubnetAInterface.id
+    device_index         = 1
+  }
 }
