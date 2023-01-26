@@ -8,23 +8,24 @@ pipeline {
         }
         stage('Destroy Existing Infrastructure') {
             steps {
-                sh("terraform destroy --auto-approve")
+                // sh("terraform destroy --auto-approve")
+                echo 'Destruction Skipped'
             }
         }
-        // stage('Terraform Init') {
-        //     steps {
-        //         sh("terraform init")
-        //     }
-        // }
-        // stage('Terraform Apply') {
-        //     steps {
-        //         sh("terraform apply --auto-approve")
-        //     }
-        // }
-        // stage('Execute Ansible') {
-        //     steps {
-        //         ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory.yml', playbook: 'playbook.yml'
-        //     }
-        // }
+        stage('Terraform Init') {
+            steps {
+                sh("terraform init")
+            }
+        }
+        stage('Terraform Apply') {
+            steps {
+                sh("terraform apply --auto-approve")
+            }
+        }
+        stage('Execute Ansible') {
+            steps {
+                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory.yml', playbook: 'playbook.yml'
+            }
+        }
     }
 }
