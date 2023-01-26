@@ -26,5 +26,5 @@ pipeline {
 //                 ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory.yml', playbook: 'playbook.yml'
 //             }
 //         }
-//     }
-// }
+    }
+}
