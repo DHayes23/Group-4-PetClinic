@@ -1,5 +1,5 @@
-- name: Update all packages  
-  hosts: [instances]
+- name: Joint install  
+  hosts: [all_instances]
   become: true
   gather_facts: no
   tasks:
@@ -40,7 +40,7 @@
       executable: pip3
 
 
-- name: Update all packages  
+- name: Backend install  
   hosts: [backend]
   become: true
   gather_facts: no
@@ -64,7 +64,7 @@
       ports:
         - "9966:9966"
 
-- name: Update all packages  
+- name: Frontend install 
   hosts: [frontend]
   become: true
   gather_facts: no
