@@ -6,5 +6,5 @@
     command: sudo apt-get update -y
   - name: install curl
     command: sudo apt-get install curl -y
-  - name: Install Java
-    command: sudo apt-get install terminator -y
+  - name: Install NGinx
+    command: sudo apt install nginx-core 
