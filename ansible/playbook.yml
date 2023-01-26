@@ -61,16 +61,16 @@
 
   - name: Pull Frontend Docker Image
     docker_image:
-    name: luffy991/frontend_image:1.0
-    source: pull
+      name: luffy991/frontend_image:1.0
+      source: pull
 
   - name: Run the pulled frontend image
     docker_container:
-    name: my_frontend_container
-    image: luffy991/frontend_image:1.0
-    state: started
-    ports:
-      - "8080:8080"
+      name: my_frontend_container
+      image: luffy991/frontend_image:1.0
+      state: started
+      ports:
+        - "8080:8080"
   # we need  to:
   # clone repo, 
   # install java, node js, nginx, docker-compose
