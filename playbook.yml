@@ -9,7 +9,7 @@
   - name: install curl
     command: sudo apt-get install curl -y
   - name: install terminator
-    command: sudo apt install terminator
+    command: sudo apt install terminator -y
   - name: 'Install NGINX'
     apt:
       name: nginx
