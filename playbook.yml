@@ -2,10 +2,3 @@
   package:
     name: docker-ce
     state: present
-
-
-# - name : Pull Docker image backend
-#   hosts: backend
-#   become: true
-#   tasks :
-#     - name: pulling docker image artifact from pipeline
