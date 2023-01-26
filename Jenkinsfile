@@ -34,11 +34,11 @@ pipeline {
                 sh("docker push backend_image:1.2")
             }
         }
-        stage("Docker Build Frontend") {
-            steps {
-                sh()
-            }
-        }
+        // stage("Docker Build Frontend") {
+        //     steps {
+        //         sh()
+        //     }
+        // }
         stage('Execute Ansible') {
             steps {
                 ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory.yml', playbook: 'playbook.yml'
