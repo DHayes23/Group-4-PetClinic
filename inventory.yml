@@ -1,11 +1,11 @@
 # file used for defining the host in your infrastructure
-all:
-  hosts:
-    # 172.31.33.153
-    ec2-34-252-81-166.eu-west-1.compute.amazonaws.com:
-  vars:
-    ansible_user: ubuntu
-    ansible_ssh_private_key_file: '' 
+# all:
+#   hosts:
+#     # 172.31.33.153
+#     ec2-34-252-81-166.eu-west-1.compute.amazonaws.com:
+#   vars:
+#     ansible_user: ubuntu
+#     ansible_ssh_private_key_file: '' 
 
 [docker-hosts]
 host1 ansible_host=172.31.33.153 ansible_user=root
