@@ -1,9 +1,12 @@
 - name: Update all packages  
   hosts: [instances]
   become: true
+  gather_facts: no
   tasks:
   - name: "Wait for system to become reachable"
     wait_for_connection:
+  - name: "Gather Facts"
+    setup:
   - name: updating packages
     command: sudo apt-get update -y
   - name: install curl
