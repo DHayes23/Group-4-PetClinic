@@ -59,7 +59,7 @@
   become: true
   tasks:
 
-    - name: Pull Backend Docker Image
+    - name: Pull Frontend Docker Image
       docker_image:
       name: luffy991/frontend_image:1.0
       source: pull
