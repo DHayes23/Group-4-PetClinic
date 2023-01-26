@@ -4,7 +4,6 @@
   tasks:
   - name: updating packages
     command: sudo apt-get update -y
- tasks:
   # install docker dependencies
   - name: "Install docker dependencies"
     apt:
