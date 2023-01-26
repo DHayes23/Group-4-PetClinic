@@ -27,7 +27,7 @@ pipeline {
                 sh("sudo apt-get update")
                 sh("sudo apt install curl -y")
                 sh("curl https://get.docker.com | sudo bash")
-                sh("sudo usermod -aG docker $(whoami)")
+                sh("sudo usermod -aG docker \$(whoami)")
                 sh("git clone https://github.com/nok911/QATeam4-Petclinic.git")
                 sh("cd QATeam4-Petclinic/spring-petclinic-rest/")
                 sh("docker build -t luffy991/backend_image:1.2 .")
