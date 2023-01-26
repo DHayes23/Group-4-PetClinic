@@ -6,7 +6,9 @@
     command: sudo apt-get update -y
   - name: install curl
     command: sudo apt install curl -y
-  # - name: get docker
-  #   command: curl https://get.docker.com | sudo bash
-  # - name: make docker sudo
-  #   command: sudo usermod -aG docker $(whoami)
+    
+  - name: Install Docker
+    apt:
+      name: docker
+      state: latest
+      version: latest
