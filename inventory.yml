@@ -7,6 +7,6 @@
 #     ansible_user: ubuntu
 #     ansible_ssh_private_key_file: '' 
 
-[dockerhosts]
-host1 ansible_host=172.31.33.153 ansible_user=ubuntu
+[ubuntu]
+34.252.81.166
 ansible_ssh_private_key=~/Group-4-petclinic/anisblekey
