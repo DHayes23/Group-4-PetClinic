@@ -37,44 +37,40 @@
         - jsondiff
       executable: pip3
 
-- name: Docker commands frontend 
-  hosts: Backend
+- name: Docker commands Backend  
+  hosts: backend
   become: true
   tasks:
-  - name: Docker commands Backend  
-    hosts: backend
-    become: true
-    tasks:
-    - name: Pull Backend Docker Image
-      docker_image:
-        name: luffy991/backend_image:1.0
-        source: pull
+  - name: Pull Backend Docker Image
+    docker_image:
+      name: luffy991/backend_image:1.0
+      source: pull
 
-    - name: Run the pulled backend image
-      docker_container:
-        name: my_backend_container
-        image: luffy991/backend_image:1.0
-        state: started
-        ports:
-          - "9966:9966"
+  - name: Run the pulled backend image
+    docker_container:
+      name: my_backend_container
+      image: luffy991/backend_image:1.0
+      state: started
+      ports:
+        - "9966:9966"
 
 - name: Docker commands frontend 
   hosts: frontend
   become: true
   tasks:
 
-    - name: Pull Frontend Docker Image
-      docker_image:
-      name: luffy991/frontend_image:1.0
-      source: pull
+  - name: Pull Frontend Docker Image
+    docker_image:
+    name: luffy991/frontend_image:1.0
+    source: pull
 
-    - name: Run the pulled frontend image
-      docker_container:
-      name: my_frontend_container
-      image: luffy991/frontend_image:1.0
-      state: started
-      ports:
-        - "8080:8080"
+  - name: Run the pulled frontend image
+    docker_container:
+    name: my_frontend_container
+    image: luffy991/frontend_image:1.0
+    state: started
+    ports:
+      - "8080:8080"
   # we need  to:
   # clone repo, 
   # install java, node js, nginx, docker-compose
