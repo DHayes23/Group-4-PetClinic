@@ -1,4 +1,4 @@
 - name: Install Docker
-  apt:
+  service:
     name: docker-ce
     state: present
