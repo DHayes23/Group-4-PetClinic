@@ -2,8 +2,6 @@
   hosts: all
   become: true
   tasks:
-  - name: updating packages
-    command: sudo apt-get update -y
   # install docker dependencies
   - name: "Install docker dependencies"
     apt:
