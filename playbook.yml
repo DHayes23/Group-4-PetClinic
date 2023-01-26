@@ -2,6 +2,8 @@
   hosts: [instances]
   become: true
   tasks:
+  - name: "Wait for system to become reachable"
+    wait_for_connection:
   - name: updating packages
     command: sudo apt-get update -y
   - name: install curl
