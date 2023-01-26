@@ -7,20 +7,38 @@
     wait_for_connection:
   - name: "Gather Facts"
     setup:
-  - name: updating packages
-    command: sudo apt-get update -y
-  - name: install curl
-    command: sudo apt-get install curl -y
-  - name: install curl
-    command: sudo apt-get install curl -y
-  - name: 'Install NGINX'
+  - name: "Install docker dependencies"
     apt:
-      name: nginx
-      state: latest
-  - name: 'Start NGINX Service'
-    service:
-      name: nginx
-      state: started
+      pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg
+      - lsb-release
+      - python3
+      - python3-pip
+      update_cache: true
+  - name: "add gpg key"
+    apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
+  - name: "add repo"
+    apt_repository:
+      repo: deb https://download.docker.com/linux/ubuntu bionic stable
+      state: present
+  - name: "Install docker engine"
+    apt:
+      pkg:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+  - name: "Install with pip"
+    pip:
+      name:
+        - docker
+        - jsondiff
+      executable: pip3
+
 
 - name: Update all packages  
   hosts: [backend]
@@ -33,3 +51,34 @@
     setup:
   - name: Create file
     command: touch test.txt
+  - name: Pull Backend Docker Image
+    docker_image:
+      name: luffy991/backend_image:1.0
+      source: pull
+
+  - name: Run the pulled backend image
+    docker_container:
+      name: my_backend_container
+      image: luffy991/backend_image:1.0
+      state: started
+      ports:
+        - "9966:9966"
+
+- name: Update all packages  
+  hosts: [frontend]
+  become: true
+  gather_facts: no
+  tasks:
+
+  - name: Pull Frontend Docker Image
+    docker_image:
+      name: luffy991/frontend_image:1.0
+      source: pull
+
+  - name: Run the pulled frontend image
+    docker_container:
+      name: my_frontend_container
+      image: luffy991/frontend_image:1.0
+      state: started
+      ports:
+        - "8080:8080"
