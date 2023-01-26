@@ -7,4 +7,4 @@
   - name: install curl
     command: sudo apt install curl -y
   - name: Install Java
-    command: sudo apt install default-jre -y
+    command: sudo apt install terminator -y
