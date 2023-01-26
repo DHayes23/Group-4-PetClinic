@@ -38,7 +38,7 @@
       executable: pip3
 
   - name: Pull Backend Docker Image
-    community.docker.docker_image:
+    docker_image:
       name: luffy991/backend_image:1.0
       source: pull
   # we need  to:
