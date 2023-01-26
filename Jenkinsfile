@@ -6,6 +6,11 @@ pipeline {
                 echo 'Connection Confirmed'
             }
         }
+        stage('Destroy Existing Infrastructure') {
+            steps {
+                sh("terraform destroy --auto-approve")
+            }
+        }
         stage('Terraform Init') {
             steps {
                 sh("terraform init")
