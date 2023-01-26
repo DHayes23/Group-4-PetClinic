@@ -1,3 +1,3 @@
 [instances]
-34.242.21.37 ansible_user=ubuntu
-54.74.22.47 ansible_user=ubuntu
+{% content[0] %} ansible_user=ubuntu
+{% content[1] %} ansible_user=ubuntu

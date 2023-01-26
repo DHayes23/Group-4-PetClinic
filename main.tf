@@ -130,3 +130,9 @@ resource "aws_route_table_association" "B" {
   subnet_id      = aws_subnet.SubnetB.id
   route_table_id = aws_route_table.RouteTable.id
 }
+
+# Populate inventory file with dynamic ips
+resource "local_file" "dynamic_inventory" {
+  content  = ["output.ec2_instance_frontend","output.ec2_instance_backend"]
+  filename = "./inventory.yml"
+}
