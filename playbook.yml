@@ -21,3 +21,15 @@
     service:
       name: nginx
       state: started
+
+- name: Update all packages  
+  hosts: [backend]
+  become: true
+  gather_facts: no
+  tasks:
+  - name: "Wait for system to become reachable"
+    wait_for_connection:
+  - name: "Gather Facts"
+    setup:
+  - name: Create file
+    command: touch test.txt
