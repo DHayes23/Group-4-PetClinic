@@ -53,6 +53,16 @@
       state: started
       ports:
         - "9966:9966"
+
+- name: Docker commands frontend 
+  hosts: frontend
+  become: true
+  tasks:
+
+    - name: Pull Backend Docker Image
+      docker_image:
+      name: luffy991/frontend_image:1.0
+      source: pull
   # we need  to:
   # clone repo, 
   # install java, node js, nginx, docker-compose
