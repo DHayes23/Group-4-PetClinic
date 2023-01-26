@@ -9,4 +9,4 @@
 
 [ubuntu]
 34.252.81.166
-ansible_ssh_private_key=~/Group-4-petclinic/anisblekey
+ansible_ssh_private_key=~/Group-4-petclinic/anisblekey.pem
