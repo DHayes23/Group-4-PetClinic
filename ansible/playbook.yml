@@ -37,22 +37,26 @@
         - jsondiff
       executable: pip3
 
-- name: Docker commands Backend  
-  hosts: backend
+- name: Docker commands frontend 
+  hosts: Backend
   become: true
   tasks:
-  - name: Pull Backend Docker Image
-    docker_image:
-      name: luffy991/backend_image:1.0
-      source: pull
+  - name: Docker commands Backend  
+    hosts: backend
+    become: true
+    tasks:
+    - name: Pull Backend Docker Image
+      docker_image:
+        name: luffy991/backend_image:1.0
+        source: pull
 
-  - name: Run the pulled backend image
-    docker_container:
-      name: my_backend_container
-      image: luffy991/backend_image:1.0
-      state: started
-      ports:
-        - "9966:9966"
+    - name: Run the pulled backend image
+      docker_container:
+        name: my_backend_container
+        image: luffy991/backend_image:1.0
+        state: started
+        ports:
+          - "9966:9966"
 
 - name: Docker commands frontend 
   hosts: frontend
