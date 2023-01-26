@@ -1,5 +1,5 @@
 - name: Update all packages  
-  hosts: all
+  hosts: [instances]
   become: true
   tasks:
   - name: updating packages
