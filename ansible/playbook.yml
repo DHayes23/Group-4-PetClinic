@@ -38,9 +38,8 @@
       executable: pip3
 
   - name: Pull Backend Docker Image
-      community.docker.docker_image:
-        name: luffy991/backend_image:1.0
-        source: pull
+      name: luffy991/backend_image:1.0
+      source: pull
   # we need  to:
   # clone repo, 
   # install java, node js, nginx, docker-compose
