@@ -6,5 +6,11 @@
     command: sudo apt-get update -y
   - name: install curl
     command: sudo apt-get install curl -y
-  - name: Install NGinx
-    command: sudo apt install nginx-core -y
+  - name: 'Install NGINX'
+    apt:
+      name: nginx
+      state: latest
+      update_cache: true
+  - name: 'Start NGINX Service'
+    service:
+      name: nginx
