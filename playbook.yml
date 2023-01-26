@@ -1,14 +1,8 @@
-- name: Update all packages  
-  hosts: localhost
-  become: true
-  tasks:
-    - name: updating packages
-      command: sudo apt-get update -y
+- name: Install Docker
+  package:
+    name: docker-ce
+    state: present
 
-  # install docker 
-    # - name: Install docker
-    #   become: true
-    #   shell: curl https://get.docker.com | sh
 
 # - name : Pull Docker image backend
 #   hosts: backend
