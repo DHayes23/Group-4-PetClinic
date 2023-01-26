@@ -36,6 +36,8 @@
         - docker
         - jsondiff
       executable: pip3
+
+  
   # we need  to:
   # clone repo, 
   # install java, node js, nginx, docker-compose
