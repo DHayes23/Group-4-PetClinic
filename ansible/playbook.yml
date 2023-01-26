@@ -37,6 +37,10 @@
         - jsondiff
       executable: pip3
 
+- name: Docker commands Backend  
+  hosts: backend
+  become: true
+  tasks:
   - name: Pull Backend Docker Image
     docker_image:
       name: luffy991/backend_image:1.0
