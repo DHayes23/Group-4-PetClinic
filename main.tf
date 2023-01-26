@@ -133,6 +133,6 @@ resource "aws_route_table_association" "B" {
 
 # Populate inventory file with dynamic ips
 resource "local_file" "dynamic_inventory" {
-  content  = ["output.ec2_instance_frontend","output.ec2_instance_backend"]
+  content  = "[instances]\n ${output.ec2_instance_frontend} \n ${output.ec2_instance_backend}"
   filename = "./inventory.yml"
 }
