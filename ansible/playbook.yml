@@ -4,11 +4,50 @@
   tasks:
   - name: updating packages
     command: sudo apt-get update -y
-  - name: install curl
-    command: sudo apt install curl -y
-    
-  - name: Install Docker
+ tasks:
+  # install docker dependencies
+  - name: "Install docker dependencies"
     apt:
-      name: docker
-      state: latest
-      version: latest
+      pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg
+      - lsb-release
+      - python3
+      - python3-pip
+  # add gpg key, validates integrity of software before install 
+  - name: "add gpg key"
+    apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
+  - name: "add repo"
+    apt_repository:
+      repo: deb https://download.docker.com/linux/ubuntu bionic stable
+      state: present
+  # install docker engine
+  - name: "Install docker engine"
+    apt:
+      pkg:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+  # install docker with pip 
+  - name: "Install with pip"
+    pip:
+      name:
+        - docker
+        - jsondiff
+      executable: pip3
+  # we need  to:
+  # clone repo, 
+  # install java, node js, nginx, docker-compose
+  # get instance IP
+  # set instance IP as variable
+  # ansible configure swarm 
+  # - name: ensure nginx is at the latest version
+  #   apt: name=nginx state=latest
+  # - name: start nginx
+  #   service:
+  #       name: nginx
+  #       state: started
