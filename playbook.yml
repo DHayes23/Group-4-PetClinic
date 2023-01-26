@@ -1,0 +1,8 @@
+- name: Update all packages  
+  hosts: all
+  become: true
+  tasks:
+  - name: updating packages
+    command: sudo apt-get update -y
+  - name: install curl
+    command: sudo apt install curl -y
