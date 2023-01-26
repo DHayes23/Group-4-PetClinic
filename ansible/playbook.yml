@@ -41,6 +41,14 @@
     docker_image:
       name: luffy991/backend_image:1.0
       source: pull
+
+  - name: Run the pulled backend image
+    docker_container:
+      name: my_backend_container
+      image: luffy991/backend_image:1.0
+      state: started
+      ports:
+        - "9966:9966"
   # we need  to:
   # clone repo, 
   # install java, node js, nginx, docker-compose
