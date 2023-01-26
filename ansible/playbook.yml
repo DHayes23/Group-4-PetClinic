@@ -1,5 +1,5 @@
 - name: Update all packages  
-  hosts: ubuntu
+  hosts: backend
   become: true
   tasks:
   - name: updating packages
