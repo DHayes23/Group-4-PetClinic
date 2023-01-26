@@ -15,6 +15,7 @@ pipeline {
             steps {
                 sh("terraform apply --auto-approve")
             }
+        }
         stage('Execute Ansible') {
             steps {
                 ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory.yml', playbook: 'playbook.yml'
