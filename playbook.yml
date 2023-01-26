@@ -13,8 +13,6 @@
     command: sudo apt-get install curl -y
   - name: install curl
     command: sudo apt-get install curl -y
-  - name: install googler
-    command: sudo apt install googler -y
   - name: 'Install NGINX'
     apt:
       name: nginx
