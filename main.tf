@@ -138,13 +138,13 @@ resource "local_file" "dynamic_inventory" {
 }
 
 # Populate frontend_ip.txt
-resource "local_file" "ip_output" {
+resource "local_file" "frontend_ip_output" {
   content  = "${aws_instance.FrontendInstance.public_ip}"
   filename = "./frontend_ip.txt"
 }
 
 # Populate backend_ip.txt
-resource "local_file" "ip_output" {
+resource "local_file" "backend_ip_output" {
   content  = "${aws_instance.BackendInstance.public_ip}"
   filename = "./backend_ip.txt"
 }
