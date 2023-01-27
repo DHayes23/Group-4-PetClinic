@@ -21,6 +21,12 @@ pipeline {
                 sh("terraform apply --auto-approve")
             }
         }
+        stage('create json file backend-IP'){
+            steps{
+                sh("terraform output -json > output.json")
+                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory.yml', playbook: 'config.yml'
+            }
+        }
         stage('Build Docker Images'){
             steps {
                 dir('./spring-petclinic-angular/'){

@@ -1,0 +1,9 @@
+- name: read terraform output
+  set_fact:
+      ip_address: "{{ (output.json | from_json).ip_address.value }}"
+
+- name: Input IP variable into source code
+  ansible.builtin.lineinfile:
+    path: /spring-petclinic-angular/src/environments/environments.ts
+    regexp: 'localhost'
+    replace: "{{ ip_address }}"
