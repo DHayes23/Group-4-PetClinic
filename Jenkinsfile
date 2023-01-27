@@ -14,7 +14,6 @@ pipeline {
         stage('Destroy Existing Infrastructure') {
             steps {
                 sh("terraform destroy --auto-approve")
-                // echo 'Destruction Skipped'
             }
         }
         stage('Terraform Apply') {
