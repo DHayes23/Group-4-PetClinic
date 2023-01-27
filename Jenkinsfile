@@ -40,6 +40,8 @@ pipeline {
                     }
                     sh "sudo docker push luffy991/petclinic-backend:latest"
                     sh "sudo docker push luffy991/petclinic-frontend:latest"
+                    sh "sudo docker rmi luffy991/petclinic-frontend:latest"
+                    sh "sudo docker rmi luffy991/petclinic-backend:latest"
                 }
             }
         }
