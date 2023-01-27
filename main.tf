@@ -147,5 +147,5 @@ resource "local_file" "frontend_ip_output" {
 resource "local_file" "backend_ip_output" {
   content  = "export let BACKEND_IP='${aws_instance.BackendInstance.public_ip}''"
 
-  filename = "./backend_ip.ts"
+  filename = "./backend_ip.js"
 }

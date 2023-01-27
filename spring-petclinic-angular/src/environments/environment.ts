@@ -20,7 +20,7 @@
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
-import {BACKEND_IP} from '../../.././backend_ip';
+import {BACKEND_IP} from '../../../backend_ip';
 export const environment = {
   production: false,
   REST_API_URL: `'http://${BACKEND_IP}:9966/petclinic/api/'`
