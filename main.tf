@@ -137,8 +137,14 @@ resource "local_file" "dynamic_inventory" {
   filename = "./inventory.yml"
 }
 
-# Populate inventory file with dynamic ips
+# Populate frontend_ip.txt
 resource "local_file" "ip_output" {
-  content  = "Frontend=${aws_instance.FrontendInstance.public_ip}\n Backend=${aws_instance.BackendInstance.public_ip}"
-  filename = "./ip_addresses.txt"
+  content  = "${aws_instance.FrontendInstance.public_ip}"
+  filename = "./frontend_ip.txt"
+}
+
+# Populate backend_ip.txt
+resource "local_file" "ip_output" {
+  content  = "${aws_instance.BackendInstance.public_ip}"
+  filename = "./backend_ip.txt"
 }
