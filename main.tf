@@ -145,6 +145,7 @@ resource "local_file" "frontend_ip_output" {
 
 # Populate backend_ip.txt
 resource "local_file" "backend_ip_output" {
-  content  = "${aws_instance.BackendInstance.public_ip}"
-  filename = "./backend_ip.txt"
+  content  = "export let BACKEND_IP='${aws_instance.BackendInstance.public_ip}''"
+
+  filename = "./backend_ip.ts"
 }
