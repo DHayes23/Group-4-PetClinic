@@ -25,10 +25,10 @@ pipeline {
         stage('build docker images'){
             steps {
                 dir('./spring-petclinic-angular/'){
-                    sh "sudo docker build -t luffy991/petclinic-frontend:latest ."
+                    sh "docker build -t luffy991/petclinic-frontend:latest ."
                 }
                 dir('./spring-petclinic-rest/'){
-                    sh "sudo docker build -t luffy991/petclinic-backend:latest ."
+                    sh "docker build -t luffy991/petclinic-backend:latest ."
                 } 
             }
         }
@@ -38,10 +38,10 @@ pipeline {
                     withCredentials([string(credentialsId: 'DockerPass', variable: 'DockerPass')]) {
                         sh 'sudo docker login -u luffy991 -p ${DockerPass}'
                     }
-                    sh "sudo docker push luffy991/petclinic-backend:latest"
-                    sh "sudo docker push luffy991/petclinic-frontend:latest"
-                    sh "sudo docker rmi luffy991/petclinic-frontend:latest"
-                    sh "sudo docker rmi luffy991/petclinic-backend:latest"
+                    sh "docker push luffy991/petclinic-backend:latest"
+                    sh "docker push luffy991/petclinic-frontend:latest"
+                    sh "docker rmi luffy991/petclinic-frontend:latest"
+                    sh "docker rmi luffy991/petclinic-backend:latest"
                 }
             }
         }
