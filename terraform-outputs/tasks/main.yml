@@ -1,0 +1,3 @@
+- name: read terraform output
+  set_fact:
+      ip_address: "{{ (output.json | from_json).ip_address.value }}"

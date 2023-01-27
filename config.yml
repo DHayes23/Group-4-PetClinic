@@ -1,6 +1,7 @@
-- name: read terraform output
-  set_fact:
-      ip_address: "{{ (output.json | from_json).ip_address.value }}"
+- name: Import Terraform Outputs
+  import_role:
+    name: terraform-outputs
+
 
 - name: Input IP variable into source code
   ansible.builtin.lineinfile:
