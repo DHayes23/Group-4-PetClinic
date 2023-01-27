@@ -22,7 +22,7 @@ pipeline {
                 sh("terraform apply --auto-approve")
             }
         }
-        stage('build docker images'){
+        stage('Build Docker Images'){
             steps {
                 dir('./spring-petclinic-angular/'){
                     sh "sudo -S docker build -t luffy991/petclinic-frontend:latest ."
@@ -32,11 +32,11 @@ pipeline {
                 } 
             }
         }
-        stage('Push image to Hub'){
+        stage('Push Image to Hub'){
             steps{
                 script{
-                    withCredentials([string(credentialsId: 'DockerPass', variable: 'DockerPass')]) {
-                        sh 'sudo -S docker login -u luffy991 -p ${DockerPass}'
+                    withCredentials([string(credentialsId: 'DockerPassword', variable: 'DockerPassword')]) {
+    			        sh 'sudo -S docker login -u luffy991 -p ${DockerPass}'
                     }
                     sh "sudo -S docker push luffy991/petclinic-backend:latest"
                     sh "sudo -S docker push luffy991/petclinic-frontend:latest"
