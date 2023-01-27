@@ -36,7 +36,7 @@ pipeline {
             steps{
                 script{
                     withCredentials([string(credentialsId: 'DockerPassword', variable: 'DockerPassword')]) {
-    			        sh 'sudo -S docker login -u luffy991 -p ${DockerPass}'
+    			        sh 'sudo -S docker login -u luffy991 -p ${DockerPassword}'
                     }
                     sh "sudo -S docker push luffy991/petclinic-backend:latest"
                     sh "sudo -S docker push luffy991/petclinic-frontend:latest"
